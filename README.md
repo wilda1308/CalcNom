@@ -1,0 +1,2 @@
+# CalcNom
+Software web sobre el calculo de nóminas de empleados, permite calcular y gestionar un listado de calculos de nóminas guardados, el calculo se realiza con valores devengados y deducidos, los cuales permiten saber el salario a pagar por el empleador, y la sumatoria de todas las nóminas para conocer el total de pago y pronosticar gastos. Este software maneja únicamente desarrollo Frontend con lenguajes HTML, CSS y JavaScript.
