@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcNom | Registrar Nómina</title>
+    <link rel="icon" href="../assets/imagenes/identidad/icon.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="app d-lg-flex">
+
+        <!-- MENU LATERAL -->
+        <div class="sidebar-col">
+            <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="menuLateral" aria-label="Menú de navegación">
+                <div class="offcanvas-header d-lg-none">
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar menú"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="sidebar-inner">
+                        <a class="brand" href="../index.html">
+                            <span class="brand-mark">
+                                <img src="../assets/imagenes/identidad/icon.svg" alt="Logo CalcNom">
+                            </span>
+                            <span>
+                                <span class="brand-name">CalcNom</span>
+                                <span class="brand-sub">Sistema de nómina</span>
+                            </span>
+                        </a>
+
+                        <nav aria-label="Principal">
+                            <ul class="nav flex-column gap-1">
+                                <li class="nav-item">
+                                    <a href="../index.html" class="nav-link"><i class="bi bi-house-door"></i> Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="registroNomina.html" class="nav-link active"><i class="bi bi-person-plus"></i> Registrar Nómina</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="historialNomina.html" class="nav-link"><i class="bi bi-clock-history"></i> Historial de Nóminas</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <p class="sidebar-slogan">Gestiona, calcula la nómina de tus empleados.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="content-col flex-grow-1">
+            <header class="topbar d-flex align-items-center justify-content-between px-3 px-lg-4">
+                <button class="btn btn-outline-primary btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menú">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-calendar"></i>
+                    <span>
+                        <span class="d-none d-sm-inline">Fecha: </span>
+                        <span class="fecha-actual" id="fecha-actual"></span>
+                    </span>
+                </div>
+            </header>
+            <main class="container-xl px-3 px-lg-4 py-4">
+                <div class="mb-4">
+                    <a href="../index.html" class="back-link"><i class="bi bi-arrow-left"></i> Volver al inicio</a>
+                    <h1 class="page-title">Registrar Nómina</h1>
+                    <div class="d-block">
+                        <p class="text-body-secondary mb-0 d-inline">Ingresa los datos del empleado para calcular su nómina.</p>
+                        <p class="indicador-obligatorio d-inline">Todos los campos con <span class="indicador-obligatorio">*</span> son obligatorios.</p>
+                    </div>
+                </div>
+
+                <form id="form-nomina" style="max-width: 920px;">
+
+                    <!-- DATOS GENERALES DEL EMPLEADO -->
+                    <section class="card mb-4">
+                        <div class="card-body p-4">
+                            <h2 class="card-heading"><i class="bi bi-person-vcard"></i> Datos del empleado</h2>
+                            <div class="row g-3">
+                                <div class="col-md-6 campo">
+                                    <label for="documento" class="form-label">Número de documento <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="documento"><i class="bi bi-card-text"></i></label>
+                                        <input type="text" class="form-control" name="documento" id="documento" placeholder="Ej: 1012345678" inputmode="numeric" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="area" class="form-label">Área o departamento <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="area"><i class="bi bi-briefcase"></i></label>
+                                        <select class="form-select" name="area" id="area" required>
+                                            <option value="" disabled selected>Selecciona una área o departamento</option>
+                                            <optgroup label="Área de Producto y Tecnología" class="form-label">
+                                                <option class="" value="Desarrollo de Software / Ingeniería">Desarrollo de Software / Ingeniería</option>
+                                                <option value="Control de calidad (QA / Testing)">Control de calidad (QA / Testing) </option>
+                                                <option value="Gestión de Producto (Product Management)">Gestión de Producto (Product Management)</option>
+                                                <option value="Soporte Técnico / Operaciones (DevOps)">Soporte Técnico / Operaciones (DevOps)</option>
+                                            </optgroup>
+                                            <optgroup label="Área Comercial y de Crecimiento" class="form-label">
+                                                <option class="" value="Ventas / Comercial">Ventas / Comercial</option>
+                                                <option value="Preventa e Ingeniería de Soluciones">Preventa e Ingeniería de Soluciones</option>
+                                                <option value="Marketing y Crecimiento (Growth)">Marketing y Crecimiento (Growth)</option>
+                                                <option value="Éxito del Cliente (Customer Success)">Éxito del Cliente (Customer Success)</option>
+                                            </optgroup>
+                                            <optgroup label="Área Corporativa y de Soporte" class="form-label">
+                                                <option class="" value="Recursos Humanos (Talento)">Recursos Humanos (Talento)</option>
+                                                <option value="Finanzas y Contabilidad">Finanzas y Contabilidad</option>
+                                                <option value="Legal / Cumplimiento">Legal / Cumplimiento</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="nombre" class="form-label">Nombre/s <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="nombre"><i class="bi bi-person"></i></label>
+                                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ej: Santiago" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="apellido" class="form-label">Apellido/s <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="apellido"><i class="bi bi-person"></i></label>
+                                        <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ej: Ramírez" required>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-3 col-md-12">
+                                    <label for="mas-un-salario" class="form-label mb-0">¿El empleado gana más de un salario mínimo (1.750.000)?</label>
+                                    <div class="form-check form-switch m-0">
+                                        <input type="checkbox" class="form-check-input" role="switch" id="mas-un-salario" name="masUnSalario" value="si">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 campo d-none" id="contenedor-salarioBase">
+                                    <label for="salarioBasico" class="form-label">Salario básico mensual (COP) <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="salarioBasico"><i class="bi bi-currency-dollar"></i></label>
+                                        <input type="text" class="form-control" name="salarioBasico" id="salarioBasico" inputmode="decimal" autocomplete="off" data-money data-min="1750000" placeholder="Ej: 1.750.905" required>
+                                    </div>
+                                    <div class="form-text">Salario base que recibe el empleado mensualmente.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DATOS DE TIEMPO TRABAJADO POR EL EMPLEADO -->
+                    <section class="card mb-4">
+                        <div class="card-body p-4">
+                            <h2 class="card-heading">
+                                <i class="bi bi-clock"></i> Tiempo trabajado
+                            </h2>
+                            <div class="row g-3">
+                                <div class="col-12 campo">
+                                    <label for="dias" class="form-label">Número de días Trabajados <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="dias"><i class="bi bi-calendar-check"></i></label>
+                                        <input type="number" class="form-control" name="dias" id="dias" inputmode="numeric" min="0" max="30" placeholder="0 - 30" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="hed" class="form-label">Horas extras diurnas</label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="hed"><i class="bi bi-cloud-sun"></i></label>
+                                        <input type="number" class="form-control" name="hed" id="hed" inputmode="numeric" min="0" step="0.5" placeholder="0" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="hen" class="form-label">Horas extras nocturnas</label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="hen"><i class="bi bi-moon-stars"></i></label>
+                                        <input type="number" class="form-control" name="hen" id="hen" inputmode="numeric" min="0" step="0.5" placeholder="0" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DATOS INGRESOS ADICIONALES DEL EMPLEADO -->
+                    <section class="card mb-4 d-none" id="seccion-comision">
+                        <div class="card-body p-4">
+                            <h2 class="card-heading"><i class="bi bi-graph-up-arrow"></i> Ingresos adicionales</h2>
+                            <div class="row g-3">
+                                <div class="col-12 campo">
+                                    <label for="comision" class="form-label">Comisión por ventas</label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="comision">
+                                            <i class="bi bi-currency-dollar"></i>
+                                        </label>
+                                        <input type="text" class="form-control" id="comision" name="comision" inputmode="decimal" autocomplete="off" data-money placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DATOS PRÉSTAMOS DEL EMPLEADO -->
+                    <section class="card mb-4">
+                        <div class="card-body p-4">
+                            <h2 class="card-heading">
+                                <i class="bi bi-bank"></i> Préstamos
+                            </h2>
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <label for="tiene-prestamo" class="form-label mb-0">¿El empleado tiene préstamos?</label>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="tiene-prestamo" name="tienePrestamo" value="si">
+                                </div>
+                            </div>
+                            <div class="row g-3" id="prestamos-container" style="display: none;">
+                                <div class="col-md-6 campo">
+                                    <label for="montoPrestamo" class="form-label">Monto del préstamo <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="montoPrestamo">
+                                            <i class="bi bi-currency-dollar"></i>
+                                        </label>
+                                        <input type="text" class="form-control" id="montoPrestamo" name="montoPrestamo" inputmode="decimal" autocomplete="off" data-money data-min="1" placeholder="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 campo">
+                                    <label for="cuotas" class="form-label">Número de cuotas <span class="indicador-obligatorio">*</span></label>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="cuotas">
+                                            <i class="bi bi-123"></i>
+                                        </label>
+                                        <input type="number" class="form-control" id="cuotas" name="cuotas" placeholder="Ej: 6" min="1" data-min="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <div class="d-flex justify-content-end gap-2 acciones">
+                        <button type="reset" class="btn btn-danger"><i class="bi bi-eraser me-1"></i> Limpiar</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-calculator me-1"></i> Calcular nómina</button>
+                    </div>
+                </form>
+
+                <!-- RESULTADO DEL CÁLCULO DE NÓMINA -->
+                <section id="resultado-nomina" class="d-none mt-4">
+                    <div class="card mb-4">
+                        <div class="card-body p-4">
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2 class="card-heading mb-0"> 
+                                    <i class="bi bi-receipt"></i>
+                                    Resultado de nómina
+                                </h2>
+
+                                <span class="badge text-bg-success">
+                                    Calculada
+                                </span>
+                            </div>
+
+                            <!-- INFORMACIÓN DEL EMPLEADO -->
+                            <div id="datos-empleado-resultado"></div>
+
+                            <hr>
+
+                            <!-- DEVENGADOS -->
+                            <div id="devengados-resultado"></div>
+
+                            <hr>
+
+                            <!-- DEDUCCIONES -->
+                            <div id="deducciones-resultado"></div>
+
+                            <hr>
+
+                            <!-- TOTAL NETO -->
+                            <div id="total-resultado"></div>
+
+                            <div class="acciones d-flex justify-content-end">
+                                <button type="button" class="btn btn-success" id="btn-guardar-nomina" disabled>
+                                    <i class="bi bi-save me-1"></i> Guardar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/historialNomina.js"></script>
+    <script src="../js/nomina.js"></script>
+    <script src="../index.js"></script>
+</body>
+</html>
